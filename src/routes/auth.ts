@@ -1,14 +1,10 @@
-import express, { Request, Response, Router } from 'express';
-// import Auth from '../models/Auth.ts';
-const router: Router = express.Router();
-import AuthController from '../controllers/AuthController.ts'
-import { validateLogin, validateRegister } from '../middleware/AuthMiddleware.ts';
+import express from 'express';
+import AuthController from '../controllers/AuthController.ts';
+import { validateLogin, validateRegister } from '../middlewares/authMiddleware.ts';
 
-// REQUISIÇÃO COM MODELS
+const route = express.Router();
 
-// router.post("/register", AuthController.register);
-// router.post("/login", AuthController.login);
-router.post('/register', validateRegister, AuthController.register);
-router.post('/login', validateLogin, AuthController.login);
+route.post('/register', validateRegister, AuthController.register);
+route.post('/login', validateLogin, AuthController.login);
 
-export default router;
+export default route;
